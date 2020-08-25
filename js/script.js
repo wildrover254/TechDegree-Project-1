@@ -56,14 +56,16 @@ const quotes = [
 **/ 
 const getRandomQuote = () => {
   const num = Math.floor(Math.random() * quotes.length);
-  console.log(num);
   return quotes[num];
   };
 
 /***
  * `printQuote` function
 ***/
-
+const printQuote = () => {
+  const quote = getRandomQuote();
+  const html = "<p class=\"quote\"> A random quote </p>"
+};
 
 
 /***
