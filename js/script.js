@@ -1,16 +1,3 @@
-/******************************************
-Treehouse FSJS Techdegree:
-project 1 - A Random Quote Generator
-******************************************/
-
-// For assistance: 
-  // Check the "Project Resources" section of the project instructions
-  // Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
-
-/*** 
- * `quotes` array 
-***/
-
 /**
  * Array of quotes that the program will display on the page. 
  * JW
@@ -27,28 +14,31 @@ const quotes = [
   },
   {
     quote: "Life is trying things to see if they work.",
-    source: "Ray Bradbury",
+    source: "Ray Bradbury"
   },
   {
     quote: "Not all those who wander are lost.",
     source: "J.R.R. Tolkien",
-    citation: "The Lord of the Rings: The Fellowship of the Ring",
-    year: 1954
+    citation: "The Lord of the Rings",
+    year: 1954,
+    tags: "#literature"
   },
   {
     quote: "Education is the passport to the future, for tomorrow belongs to those who prepare for it today.",
-    source: "Malcolm X",
-    day: "June 28, ", 
-    year: 1964
+    source: "Malcolm X", 
+    year: 1964,
+    tags: "#inspiring #historicalfigure"
+  },
+  {
+    quote: "It's dangerous to go alone! Take this.",
+    source: "The Old Man, ",
+    citation: "The Legend of Zelda",
+    tags: "#gaming"
   }
 ];
 
-/***
- * `getRandomQuote` function
-***/
-
 /**
- * The getRandomQuote arrow function expression generates a random number, 
+ * The getRandomQuote arrow function generates a random number, 
  * then uses the number to return a random quote from the quotes array.
  * Uses quotes.length so that the quotes array can be updated and any
  * new quotes can be retrieved without updating the function.
@@ -59,18 +49,41 @@ const getRandomQuote = () => {
   return quotes[num];
   };
 
-/***
- * `printQuote` function
-***/
+/**
+ * The printQuote function stores the value returned by the previous function 
+ * in the 'quote' variable. The 'html' variable contains a template literal
+ * that displays the quote and source properties of the object returned in 
+ * getRandomQuote. Three if statements then check for additional properties and 
+ * add them to the template literal contained in 'html'. Finally the entire
+ * template literal is returned.
+ * JW 
+**/
 const printQuote = () => {
   const quote = getRandomQuote();
-  const html = "<p class=\"quote\"> A random quote </p>"
-};
+  let html = `<p class="quote"> ${quote.quote} </p><p class="source"> ${quote.source}`;
 
+ if (quote.citation) {
+   html += `<span class ="citation"> ${quote.citation} </span>`; 
+ };
+
+ if (quote.year) {
+   html += `<span class = "year"> ${quote.year} </span>`;
+ };
+
+ if (quote.tags) {
+   html += `<span> ${quote.tags} </span>`;
+ };
+
+ html += `</p>`;
+
+// document.getElementById('body').style
+
+ return document.getElementById('quote-box').innerHTML = html;
+};
 
 /***
  * click event listener for the print quote button
  * DO NOT CHANGE THE CODE BELOW!!
 ***/
 
-//document.getElementById('load-quote').addEventListener("click", printQuote, false);
+document.getElementById('load-quote').addEventListener("click", printQuote, false);
