@@ -76,10 +76,22 @@ const printQuote = () => {
 
  html += `</p>`;
 
-// document.getElementById('body').style
+function randNum() {
+  let num = Math.floor(Math.random() * 256);
+  return num;
+ };
+function bgColor (value) {
+  const color = `rgb (${value}, ${value}, ${value})`;
+  return color;
+  }
+let background = bgColor(randNum());
 
- return document.getElementById('quote-box').innerHTML = html;
+document.body.style.backgroundColor = "background";
+
+return document.getElementById('quote-box').innerHTML = html;
 };
+
+var interval = window.setInterval(printQuote, 10000);
 
 /***
  * click event listener for the print quote button
