@@ -76,6 +76,19 @@ const printQuote = () => {
 
  html += `</p>`;
 
+return document.getElementById('quote-box').innerHTML = html;
+};
+
+/**
+ * This set of functions changes the background color of the page.
+ * The first returns a random number between 1 and 256, and the second
+ * uses the first to generate a random rgb value. The 'background'
+ * variable stores the rgb value and then is used to set the color of 
+ * the body.
+ * These were originally situated inside the printQuote function, but 
+ * were removed for clarity.
+ */
+
 function randNum() {
   let num = Math.floor(Math.random() * 256);
   return num;
@@ -88,9 +101,10 @@ let background = bgColor(randNum());
 
 document.body.style.backgroundColor = "background";
 
-return document.getElementById('quote-box').innerHTML = html;
-};
-
+/**The set interval method is stored in a variable and refreshes the
+ * onscreen quote every ten seconds, as per the article on setInterval on
+ * MDN.
+ **/
 var interval = window.setInterval(printQuote, 10000);
 
 /***
