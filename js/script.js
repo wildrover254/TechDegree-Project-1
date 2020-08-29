@@ -50,12 +50,28 @@ const getRandomQuote = () => {
   };
 
 /**
+ * The randomColor function creates a random rgb color value and sets
+ * the background of the body element to that color. It has a nested
+ * arrow function (randNum) that creates a random number between 1 and
+ * 256. It then calls that function three times in a template literal
+ * create the rgb value, which is then assigned to the background 
+ * element.
+ */
+
+function randomColor() {
+  const randNum = () => Math.floor(Math.random() * 256);
+  const color = `rgb(${randNum()}, ${randNum()}, ${randNum()})`;
+  document.querySelector("body").style.backgroundColor = color;
+}
+
+/**
  * The printQuote function stores the value returned by the previous function 
  * in the 'quote' variable. The 'html' variable contains a template literal
  * that displays the quote and source properties of the object returned in 
  * getRandomQuote. Three if statements then check for additional properties and 
- * add them to the template literal contained in 'html'. Finally the entire
- * template literal is returned.
+ * add them to the template literal contained in 'html'. Before the string is 
+ * returned the randomColor function is called to change the background of the 
+ * page.
  * JW 
 **/
 const printQuote = () => {
@@ -76,30 +92,10 @@ const printQuote = () => {
 
  html += `</p>`;
 
+ randomColor();
+
 return document.getElementById('quote-box').innerHTML = html;
 };
-
-/**
- * This set of functions changes the background color of the page.
- * The first returns a random number between 1 and 256, and the second
- * uses the first to generate a random rgb value. The 'background'
- * variable stores the rgb value and then is used to set the color of 
- * the body.
- * These were originally situated inside the printQuote function, but 
- * were removed for clarity.
- */
-
-function randNum() {
-  let num = Math.floor(Math.random() * 256);
-  return num;
- };
-function bgColor (value) {
-  const color = `rgb (${value}, ${value}, ${value})`;
-  return color;
-  }
-let background = bgColor(randNum());
-
-document.body.style.backgroundColor = "background";
 
 /**The set interval method is stored in a variable and refreshes the
  * onscreen quote every ten seconds, as per the article on setInterval on
